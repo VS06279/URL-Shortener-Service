@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: url-shortener
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+shortener:
+  # Base URL used when building short links in API responses.
+  base-url: http://localhost:8080
+  code-length: 7
+  rate-limit:
+    # Token bucket per client: burst size and sustained refill rate.
+    capacity: 60
+    refill-per-minute: 60
+  # API key -> client id. Replace with a real key store for production.
+  clients:
+    demo-key-akshaya: akshaya-patra
+    demo-key-partner: partner-org
+
+logging:
+  level:
+    com.kaska.shortener: INFO
